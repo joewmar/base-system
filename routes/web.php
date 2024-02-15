@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Livewire\FarmInformation\FIHome;
 use App\Utilities\GenericUtilities as GU;
 use App\Services\GenericServices as GS;
 
@@ -19,11 +19,14 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 	Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 	// Dash/Dashboard
 	Route::get('/', [DashboardController::class, 'dash'])->name('dash');
-
 	/**
 	 * YOUR CODE STARTS HERE
 	 * DO NOT ALTER ABOVE CODE
 	 */
+	Route::prefix('/farm-information')->name('farm.information')->group(function(){
+		Route::get('/', FIHome::class)->name('home');
+	});
+
 // });
 
 Route::get('/gs', function () {
