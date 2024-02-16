@@ -4,10 +4,11 @@ namespace App\Http\Livewire\FarmInformation;
 
 use Livewire\Component;
 
-class FIHome extends Component
+class FarmHome extends Component
 {
+
     public function render()
     {
-        return view('livewire.farm-information.f-i-home');
+        return view('livewire.farm-information.farm-home');
     }
 }
