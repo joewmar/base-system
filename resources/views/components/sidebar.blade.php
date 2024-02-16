@@ -1,10 +1,12 @@
+
 <div class="px-4 py-6">
     <ul class="mt-6 space-y-1">
         @foreach ($list as $module)
             @if (isset($module['sub']) && is_array($module['sub']))
                 <li>
                     <details class="group [&_summary::-webkit-details-marker]:hidden">
-                        <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-white hover:bg-gray-100 hover:text-gray-700" >
+                        {{-- <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-white hover:bg-gray-100 hover:text-gray-700 @if(isset($module['sub']) && in_array($active, $module['sub'])) bg-gray-100 text-gray-700 @endif " > --}}
+                        <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-white hover:bg-gray-100 hover:text-gray-700 " >
                         <span class="text-sm font-medium"> {{$module['name']}} </span>
             
                         <span class="shrink-0 transition duration-300 group-open:-rotate-180">

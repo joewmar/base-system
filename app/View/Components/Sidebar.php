@@ -32,7 +32,7 @@ class Sidebar extends Component
                 "name" => "Records Inventory Management",
                 "sub" =>  array(
                     ["name" => "Feed Request Record", "link" => ""],
-                    ["name" => "Farm Information", "link" => ""],
+                    ["name" => "Farm Information", "link" => route('farm.information.home')],
                     ["name" => "Accounting Bills", "link" => ""],
                     ["name" => "Accounting Payrolls", "link" => ""],
                     ["name" => "Pivot Logs", "link" => ""],

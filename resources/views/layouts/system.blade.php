@@ -71,11 +71,11 @@
     </div>
     <div class=" bg-white col-span-5  md:col-span-4 row-span-8 md:row-span-9 w-full overflow-y-auto">
         <div class="h-full m-5 ">
-            @if ($slot)
+            @isset ($slot)
                 {{$slot}}
             @else
                 @yield('content')
-            @endif
+            @endisset
         </div>
     </div>
 </div>
