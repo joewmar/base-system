@@ -10,7 +10,7 @@
     >
         <option value="">Please select</option>
 
-        @foreach ($items as $key => $value )
+        @foreach ($items ?? [] as $key => $value )
             <option value="{{$key}}" @if((isset($selectByValue) && $value == $selectByValue) || (isset($selectByKey) && $value == $selectByKey)) selected @endif >
               {{$value}} 
             </option>

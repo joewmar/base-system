@@ -18,7 +18,7 @@ class FarmLocationCreate extends Component
     ];
     public function mount()
     {
-        $farms = DB::table('farms')->get()->toArray();
+        $farms = DB::table('farms')->where('active_status', '1')->get()->toArray();
         foreach ($farms as $farm) $this->farms[encrypt($farm->id)] = $farm->farm_name;
     }
     public function add()
