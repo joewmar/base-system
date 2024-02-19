@@ -13,6 +13,9 @@ class FarmLocationEdit extends Component
     public $active_status;
     public $farms;
     public $location;
+    public $modalEdit = false;
+
+    
     protected $rules = [
         'farm_location' => 'required',
         'farm_info' => 'required',
@@ -52,5 +55,9 @@ class FarmLocationEdit extends Component
     public function render()
     {
         return view('livewire.farm-information.farm-location-edit');
+    }
+    public function confirmModal()
+    {
+        $this->modalEdit = !$this->modalEdit;
     }
 }

@@ -21,10 +21,14 @@
                             @endif
                         </div>
                         <div class="flex justify-start">
-                            <x-button name="Save"  lwClick="save()" />
+                            <x-button name="Save" lwClick="confirmModal()" />
                         </div>
                     </form>
                 </div>
+                @if ($modalEdit)
+                    <x-confirm-dialog lwID="saveFarm" lwClick="save()" header="Are you sure?" message="You want to update this: {{$farm->farm_name}}" confirm="Yes, I want save it" cancel="No, Cancel" />
+                @endif
+
             {{-- <x-modal title="Post Wala" message="Hello Success"/> --}}
             </div>
         </div>

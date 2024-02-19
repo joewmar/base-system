@@ -7,9 +7,11 @@ use Livewire\Component;
 
 class FarmEdit extends Component
 {
+    
     public $farm_name;
     public $active_status;
     public $farm;
+    public $modalEdit = false;
 
     protected $rules = [
         'farm_name' => 'required',
@@ -29,8 +31,8 @@ class FarmEdit extends Component
             'farm_name' => 'required',
             'active_status' => 'required',
         ]);
-
         $this->farm->update($validated);
+        foreach($this->farm->location as $loc) $loc->update(['active_status' => $validated['active_status']]);
         session()->flash('sucesss', 'Farm Updated Successfully');
         $this->redirect(route('farm.information.farm'));
     }
@@ -41,5 +43,9 @@ class FarmEdit extends Component
     public function render()
     {
         return view('livewire.farm-information.farm-edit');
+    }
+    public function confirmModal()
+    {
+        $this->modalEdit = !$this->modalEdit;
     }
 }
