@@ -15,7 +15,6 @@ class FarmEdit extends Component
 
     protected $rules = [
         'farm_name' => 'required',
-        'active_status' => 'required',
     ];
 
     public function mount($id)
@@ -27,13 +26,15 @@ class FarmEdit extends Component
 
     public function save()
     {
+        session()->flash('pending', true);
+        $this->modalEdit = false;
         $validated = $this->validate([
             'farm_name' => 'required',
-            'active_status' => 'required',
         ]);
         $this->farm->update($validated);
-        foreach($this->farm->location as $loc) $loc->update(['active_status' => $validated['active_status']]);
         session()->flash('sucesss', 'Farm Updated Successfully');
+        session()->flash('pending', false);
+
         $this->redirect(route('farm.information.farm'));
     }
     public function updated($propertyName)

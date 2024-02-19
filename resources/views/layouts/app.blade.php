@@ -13,6 +13,8 @@
     {{-- Styles --}}
     @yield('styles')
     @livewireStyles
+    
+
     {{-- Scripts --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @yield('scripts')
@@ -28,9 +30,12 @@
     {{-- @else
       @yield('content')
     @endauth --}}
+    <x-process-dialog />
+
     @livewireScripts
     <script>
         Livewire.onPageExpired((response, message) => {})
     </script>
-  </body>
+
+</body>
 </html>

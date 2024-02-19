@@ -52,7 +52,7 @@ class Sidebar extends Component
             [
                 "name" => "Reports",
                 "sub" =>  array(
-                    ["name" => "Accounting Bills", "link" => ""],
+                    ["name" => "Accounting Bills", "link" => route('accounting.bills.home')],
                     ["name" => "Accounting Payrolls", "link" => ""],
                     ["name" => "Pivot Logs", "link" => ""],
                     ["name" => "Audit Logs", "link" => ""],

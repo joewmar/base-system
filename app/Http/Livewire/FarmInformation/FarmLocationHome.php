@@ -31,13 +31,14 @@ class FarmLocationHome extends Component
     public function remove(string $id)
     {
         $location = FarmLocation::find(decrypt($id));
-        $location->delete();
+        $location->active_status = 0;
+        $location->save();
         session()->flash('success', 'Farm Location successfully deleted.');
         $this->redirect(route('farm.information.location'));
     }
     public function render()
     {
-        $this->locations =  FarmLocation::where('farm_location', 'like', '%' . $this->search . '%')->orderBy($this->sortBy, $this->sortDirection)->get();
+        $this->locations =  FarmLocation::where('active_status', '1')->where('farm_location', 'like', '%' . $this->search . '%')->orderBy($this->sortBy, $this->sortDirection)->get();
         return view('livewire.farm-information.farm-location-home');
     }
     public function confirmModal($variable)
@@ -55,5 +56,6 @@ class FarmLocationHome extends Component
         }
         $this->modalDelete = false;
     }
+
 
 }

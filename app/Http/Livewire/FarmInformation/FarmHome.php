@@ -28,7 +28,8 @@ class FarmHome extends Component
     public function remove(string $id)
     {
         $farm = Farm::find(decrypt($id));
-        $farm->delete();
+        $farm->active_status = 0;
+        $farm->save();
         session()->flash('success', 'Farm successfully deleted.');
         $this->redirect(route('farm.information.farm'));
     }
@@ -39,7 +40,7 @@ class FarmHome extends Component
     }
     public function render()
     {
-        $this->farms = DB::table('farms')->where('farm_name', 'like', '%' . $this->search . '%')->orderBy($this->sortBy, $this->sortDirection)->get();
+        $this->farms = DB::table('farms')->where('active_status', '1')->where('farm_name', 'like', '%' . $this->search . '%')->orderBy($this->sortBy, $this->sortDirection)->get();
         return view('livewire.farm-information.farm-home');
     }
     public function sortBy($field)
@@ -50,7 +51,7 @@ class FarmHome extends Component
             $this->sortDirection = 'asc';
             $this->sortBy = $field;
         }
-        $this->modalDelete = false;
+        $this->modalDelete = [];
     }
     public function confirmModal($variable)
     {

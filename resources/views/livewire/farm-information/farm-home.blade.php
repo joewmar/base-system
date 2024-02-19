@@ -17,22 +17,13 @@
             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 ">
                 <x-sort-button sortDirection="{{$sortDirection}}" title="Name" lwClick="sortBy('farm_name')" />
             </th>
-            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex justify-center w-full">
-                <x-sort-button sortDirection="{{$sortDirection}}" title="Active Status" lwClick="sortBy('active_status')" />
-            </th>
             <th class="px-4 py-2"></th>
         @endsection
         @section('table-rows')
             @foreach ($farms as $farm)
                 <tr>
                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{$farm->farm_name}}</td>
-                    <td class="whitespace-nowrap flex justify-center items-center p-4">
-                        @if ($farm->active_status == 1)
-                            <div class="bg-green-500 rounded-full w-3 h-3"></div>
-                        @else 
-                            <div class="bg-red-500 rounded-full w-3 h-3"></div>
-                        @endif
-                    </td>
+
                     <td class="whitespace-nowrap px-4 py-2">
                         <a href="{{route('farm.information.farm.edit', encrypt($farm->id))}}" class="inline-block rounded bg-blue-500 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700" >
                             Edit

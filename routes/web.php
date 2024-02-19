@@ -12,6 +12,9 @@ use App\Http\Livewire\FarmInformation\FarmHome;
 use App\Http\Livewire\FarmInformation\FarmLocationCreate;
 use App\Http\Livewire\FarmInformation\FarmLocationEdit;
 use App\Http\Livewire\FarmInformation\FarmLocationHome;
+use App\Http\Livewire\Reports\AccountingBillsCreate;
+use App\Http\Livewire\Reports\AccountingBillsEdit;
+use App\Http\Livewire\Reports\AccountingBillsHome;
 use App\Utilities\GenericUtilities as GU;
 use App\Services\GenericServices as GS;
 
@@ -39,6 +42,14 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 		Route::get('/farm/{id}/edit', FarmEdit::class)->name('farm.edit');
 		Route::get('/farm/location/{id}/edit', FarmLocationEdit::class)->name('location.edit');
 	});
+
+	Route::prefix('/accounting-bills')->name('accounting.bills.')->group(function(){
+		Route::get('/', AccountingBillsHome::class)->name('home');
+		Route::get('/create', AccountingBillsCreate::class)->name('create');
+		Route::get('/{id}/edit', AccountingBillsEdit::class)->name('edit');
+
+	});
+
 
 // });
 

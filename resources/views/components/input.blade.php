@@ -7,7 +7,7 @@
             type="{{$type ?? 'text'}}"
             @isset($id) id="{{$id}}" @endisset
             @isset($name) name="{{$name}}" @endisset
-            class="text-gray-700 pt-2 pl-3 peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+            {{$attributes->merge(['class'=>"text-gray-700 pt-2 peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 w-full pl-3 pr-1"])}}
             placeholder="{{$title}}"
             @isset($lwModel) wire:model.live="{{$lwModel}}" @endisset
             @isset($value) value="{{$value}}" @endisset
@@ -20,8 +20,9 @@
         </span>
     </label>
     @error($lwModel)
-        <div class="text-red-500">
+        <div class="text-red-500 text-xs">
             <span>{{$message}}</span>
         </div>
     @enderror
 </div>
+

@@ -16,14 +16,6 @@
                         <x-select title="Farm" :items="$farms" lwModel="farm_info" />
                         @if ($farm_info != null)
                             <x-input type="text" title="Location" id="location" lwModel="farm_location" />
-                            <div class="flex space-x-2 items-center ">
-                                <x-toggle title="Active" lwModel="active_status" />
-                                @if ($active_status == 1)
-                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                                @else 
-                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                @endif
-                            </div>
                             <div class="flex justify-start">
                                 <x-button name="Save"  lwClick="confirmModal()" />
                             </div>

@@ -19,7 +19,6 @@ class FarmLocationEdit extends Component
     protected $rules = [
         'farm_location' => 'required',
         'farm_info' => 'required',
-        'active_status' => 'required',
     ];
     public function mount($id)
     {
@@ -45,6 +44,7 @@ class FarmLocationEdit extends Component
     }
     public function save()
     {
+        $this->modalEdit = false;
         $validatedData = $this->validate();
         $validatedData['farm_id'] = decrypt($validatedData['farm_info']);
         unset($validatedData['farm_info']);

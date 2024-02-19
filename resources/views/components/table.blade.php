@@ -1,4 +1,4 @@
-<div class="overflow-x-auto" >
+<div class="overflow-x-auto mt-5" >
     <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
         {{$slot}}
         <thead class="ltr:text-left rtl:text-right">

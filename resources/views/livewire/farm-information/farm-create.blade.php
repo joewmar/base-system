@@ -19,7 +19,7 @@
                     <form wire:submit.prevent="add" class="space-y-5">
                         <x-input type="text" title="Farm Name" :lwModel="'farm_name'" />
                         <div class="flex justify-start">
-                            <x-button name="Add"  lwClick="add()" />
+                            <x-button name="Add" lwClick="add()" ngClick="processDialog = true" />
                         </div>
                     </form>
                 </div>

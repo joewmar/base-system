@@ -11,7 +11,6 @@ class FarmLocation extends Model
     protected $fillable = [
         'farm_id',
         'farm_location',
-        'active_status',
     ];
 
     public function farm()

@@ -19,8 +19,8 @@
             </div>
             <!-- Modal footer -->
             <div class="flex items-center justify-center p-4 md:p-5">
-                <button wire:click="{{$lwClick}}" type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">{{$confirm}}</button>
-                <button type="button" wire:click="confirmModal('{{$lwID}}')" = false" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">{{$cancel}}</button>
+                <button ng-click="processDialog = true" wire:click="{{$lwClick}}" type="button" class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">{{$confirm}}</button>
+                <button  type="button" wire:click="confirmModal('{{$lwID}}')" = false" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">{{$cancel}}</button>
             </div>
         </div>
     </div>

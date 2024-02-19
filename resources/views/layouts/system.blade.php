@@ -81,6 +81,12 @@
                 @endisset
             </div>
         </div>
+        <div class="py-3 flex justify-end text-gray-500">
+            <div class="text-sm mx-8 ">
+              <span>© <span id="year"></span>, {{env('SYSTEM_NAME', 'Brookside Group of Companies')}}. All rights reserved</span>
+            </div>
+        </div>
     </section>
     @yield('bottom')
+    
 </div>
