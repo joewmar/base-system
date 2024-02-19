@@ -12,7 +12,7 @@
             <x-button name="Add Farm" link="{{route('farm.information.farm.create')}}" />
         </div>
     </div>
-    {{-- <div class="overflow-x-auto" >
+   <div class="overflow-x-auto" >
         <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
             <thead class="ltr:text-left rtl:text-right">
                 <tr>
@@ -54,7 +54,7 @@
             </tbody>
         </table>
 
-    </div> --}}
+    </div>
 
     {{-- <x-table :titles="['Name', 'Active Status', 'Action']">
         <x-table-head  />
