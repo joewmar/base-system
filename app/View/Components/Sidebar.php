@@ -31,19 +31,14 @@ class Sidebar extends Component
             [
                 "name" => "Records Inventory Management",
                 "sub" =>  array(
-                    ["name" => "Feed Request Record", "link" => ""],
+                    ["name" => "Weekly Request", "link" => ""],
                     ["name" => "Farm Information", "link" => route('farm.information.home')],
-                    ["name" => "Accounting Bills", "link" => ""],
-                    ["name" => "Accounting Payrolls", "link" => ""],
-                    ["name" => "Pivot Logs", "link" => ""],
-                    ["name" => "Audit Logs", "link" => ""],
                 ),
             ],
             [
                 "name" => "Forecasting",
                 "sub" =>  array(
                     ["name" => "Monitoring Inventory Levels", "link" => ""],
-                    ["name" => "Message on ASANA", "link" => ""],
                 ),
             ],
             [
@@ -52,6 +47,15 @@ class Sidebar extends Component
                     ["name" => "Production Order", "link" => ""],
                     ["name" => "Premixes on ASANA", "link" => ""],
                     ["name" => "Feed Information", "link" => ""],
+                ),
+            ],
+            [
+                "name" => "Reports",
+                "sub" =>  array(
+                    ["name" => "Accounting Bills", "link" => ""],
+                    ["name" => "Accounting Payrolls", "link" => ""],
+                    ["name" => "Pivot Logs", "link" => ""],
+                    ["name" => "Audit Logs", "link" => ""],
                 ),
             ], 
         ];
