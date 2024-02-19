@@ -12,4 +12,8 @@ class Farm extends Model
         'farm_name',
         'active_status',
     ];
+    public function location()
+    {
+        return $this->hasMany(FarmLocation::class, 'farm_id', 'id');
+    }
 }

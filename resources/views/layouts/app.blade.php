@@ -18,12 +18,19 @@
     @yield('scripts')
   </head>
   <body class="font-sans antialiased">
-
+    @if (session()->has('success'))
+        <x-modal type="success" title="Success" message="{{session()->get('success')}}" />
+    @elseif(session()->has('error'))
+        <x-modal type="error" title="Error" message="{{session()->get('error')}}" />
+    @endif
     {{-- @auth --}}
       @extends('layouts.system')
     {{-- @else
       @yield('content')
     @endauth --}}
     @livewireScripts
+    <script>
+        Livewire.onPageExpired((response, message) => {})
+    </script>
   </body>
 </html>

@@ -1,94 +1,63 @@
 @section('title') Location @endsection
 
-<div>
-    <section class="h-full m-5 ">
-        <div class="h-fit m-5">
-            <div class="pt-12 w-full h-full flex flex-col space-y-10 justify-center">
-                <x-back-button link="{{route('farm.information.home')}}" />
-                <div class="p-4 text-center font-bold text-3xl">
-                    <h3>Location</h3>
-                </div>
-                <div class="flex justify-end">
-                    <div ng-show="addLoc">
-                        <x-button name="List of Location" ngClick="addLoc = !addLoc" />
-                    </div>
-                    <div ng-show="!addLoc">
-                        <x-button name="Add Location" ngClick="addLoc = !addLoc" />
-                    </div>
-                </div>
-
-
-                <div ng-show="!addLoc" class="overflow-x-auto">
-                    <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                    <thead class="ltr:text-left rtl:text-right">
-                        <tr>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date of Birth</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Role</th>
-                        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Salary</th>
-                        <th class="px-4 py-2"></th>
-                        </tr>
-                    </thead>
-                
-                    <tbody class="divide-y divide-gray-200">
-                        <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">John Doe</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Web Developer</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">$120,000</td>
-                        <td class="whitespace-nowrap px-4 py-2">
-                            <a
-                            href="#"
-                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-                            >
-                            View
-                            </a>
-                        </td>
-                        </tr>
-                
-                        <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Jane Doe</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">04/11/1980</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Web Designer</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">$100,000</td>
-                        <td class="whitespace-nowrap px-4 py-2">
-                            <a
-                            href="#"
-                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-                            >
-                            View
-                            </a>
-                        </td>
-                        </tr>
-                
-                        <tr>
-                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-                        <td class="whitespace-nowrap px-4 py-2">
-                            <a
-                            href="#"
-                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-                            >
-                            View
-                            </a>
-                        </td>
-                        </tr>
-                    </tbody>
-                    </table>
-                </div>
-
-                <div ng-show="addLoc" >
-                    <h1 class="text-2xl font-bold">Create Location</h1>
-                    <form  class="space-y-5">
-                        <x-input type="text" title="Location" id="location" lwModel="name" />
-                        <div class="flex justify-start">
-                            <x-button name="Create"  lwClick="saveLocation()" />
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="pt-12 w-full h-full flex flex-col space-y-10 justify-center">
+    <x-back-button link="{{route('farm.information.home')}}" />
+    <div class="p-4 text-center font-bold text-3xl">
+        <h3>Location</h3>
+    </div>
+    <div class="flex justify-between items-center">
+        <x-search />
+        <div>
+            <x-button name="Add Location" link="{{route('farm.information.location.create')}}" />
         </div>
-    </section>
+    </div>
+
+
+    <div class="overflow-x-auto" >
+        <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+            <thead class="ltr:text-left rtl:text-right">
+                <tr>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 ">
+                        <x-sort-button sortDirection="{{$sortDirection}}" title="Location" lwClick="sortBy('farm_location')" />
+                    </th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                        <x-sort-button sortDirection="{{$sortDirection}}" title="Farm" lwClick="sortBy('farm_id')" />
+                    </th>
+                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex justify-center">
+                        <x-sort-button sortDirection="{{$sortDirection}}" title="Active Status" lwClick="sortBy('active_status')" />
+                    </th>
+                    <th class="px-4 py-2"></th>
+                </tr>
+            </thead>
+        
+            <tbody class="divide-y divide-gray-200">
+                @foreach ($locations as $location)
+                    <tr>
+                        <td class="whitespace-nowrap px-4 py-2 text-gray-900">{{ $location->farm_location }}</td>
+                        <td class="whitespace-nowrap px-4 py-2 text-gray-900">{{ $location->farm->farm_name }}</td>
+                        <td class="whitespace-nowrap flex justify-center items-center p-4">
+                            @if ($location->active_status == 1)
+                                <div class="bg-green-500 rounded-full w-3 h-3"></div>
+                            @else 
+                                <div class="bg-red-500 rounded-full w-3 h-3"></div>
+                            @endif
+                        </td>
+                        <td class="whitespace-nowrap px-4 py-2">
+                            <a href="{{ route('farm.information.location.edit', encrypt($location->id)) }}" class="inline-block rounded bg-blue-500 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700" >
+                                Edit
+                            </a>
+                            <button type="button" wire:click="confirmModal('{{Str::camel($location->farm_location)}}')" class="inline-block rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-red-700" >
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                    @if (!empty($modalDelete[Str::camel($location->farm_location)]) && $modalDelete[Str::camel($location->farm_location)])
+                        <x-confirm-dialog lwID="{{Str::camel($location->farm_location)}}" lwClick="remove('{{encrypt($location->id)}}')" header="Are you sure?" message="You want to remove this: {{$location->farm_location}} " confirm="Yes, I want delete it" cancel="No, Cancel" />
+                    @endif
+
+                @endforeach
+        
+            </tbody>
+        </table>
+    </div>
 </div>

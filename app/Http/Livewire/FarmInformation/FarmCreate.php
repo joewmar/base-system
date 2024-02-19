@@ -8,16 +8,23 @@ use App\Models\Farm;
 
 class FarmCreate extends Component
 {
-    #[Rule('required|max:255')]
-    public $name;
+    protected $rules = [
+        'farm_name' => 'required|unique:farms,farm_name',
+    ];
+    public $farm_name;
 
-    public function save()
+    public function add()
     {
-        $this->validate();
-        Farm::create([
-            'farm_name' => $this->name,
+        $validatedData = $this->validate([
+            'farm_name' => 'required|unique:farms,farm_name',
         ]);
-        $this->redirect(route('farm.information.home'));
+        Farm::create($validatedData);
+        session()->flash('success', 'Farm successfully created.');
+        $this->redirect(route('farm.information.farm'));
+    }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
     public function render()
     {
