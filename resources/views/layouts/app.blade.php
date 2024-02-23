@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" ng-app="FeedMillApp">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,31 +11,38 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     {{-- Styles --}}
-    @yield('styles')
-    @livewireStyles
     
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @yield('styles')
+    
+    @livewireStyles
+    @wireUiScripts
+
 
     {{-- Scripts --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @yield('scripts')
   </head>
   <body class="font-sans antialiased">
-    @if (session()->has('success'))
+    {{-- @if (session()->has('success'))
         <x-modal type="success" title="Success" message="{{session()->get('success')}}" />
     @elseif(session()->has('error'))
         <x-modal type="error" title="Error" message="{{session()->get('error')}}" />
-    @endif
+    @endif --}}
+    {{-- <x-dialog z-index="z-50" blur="md" align="center" /> --}}
+
     {{-- @auth --}}
       @extends('layouts.system')
     {{-- @else
       @yield('content')
     @endauth --}}
-    <x-process-dialog />
 
     @livewireScripts
+
     <script>
         Livewire.onPageExpired((response, message) => {})
     </script>
+
+    @yield('scripts')
 
 </body>
 </html>

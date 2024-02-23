@@ -10,16 +10,16 @@
                 </div>
                 <div class="flex justify-end">
                     <div>
-                        <x-button name="Show List" link="{{route('farm.information.farm')}}" />
+                        <x-button icon="clipboard-list" dark label="Show List" href="{{route('farm.information.farm')}}" />
                     </div>
                 </div>
 
                 <div>
                     <h1 class="text-2xl font-bold">Add Farm</h1>
-                    <form wire:submit.prevent="add" class="space-y-5">
-                        <x-input type="text" title="Farm Name" :lwModel="'farm_name'" />
-                        <div class="flex justify-start">
-                            <x-button name="Add" lwClick="add()" ngClick="processDialog = true" />
+                    <form wire:submit.prevent="add" >
+                        <div class="mt-3 space-y-5">
+                            <x-input label="Farm Name" wire:model="farm_name" />
+                            <x-button  dark label="Add" wire:click="add()" />
                         </div>
                     </form>
                 </div>

@@ -4,58 +4,51 @@ namespace App\Http\Livewire\FarmInformation;
 
 use App\Models\Farm;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
 class FarmHome extends Component
 {
+    use Actions;
+
     // use WithPagination;
-
-    public $farms;
-    public $modalDelete;
-    public $sortBy = 'farm_name';
-    public $sortDirection = 'asc';
-
-    public $search;
- 
-    protected $queryString = ['search'];
-    public function mount()
+    protected $listeners = [
+        'editFarm' => 'edit',
+        'deleteFarm' => 'confirmDelete',
+    ];
+    public $editFarmData;
+    public $deleteFarmData;
+    public function edit($data)
     {
-        $this->modalDelete = [];
-        $this->farms = DB::table('farms')->get();
-        // $this->farms = DB::table('farms')->paginate(5);
-    }
-    public function remove(string $id)
-    {
-        $farm = Farm::find(decrypt($id));
-        $farm->active_status = 0;
-        $farm->save();
-        session()->flash('success', 'Farm successfully deleted.');
-        $this->redirect(route('farm.information.farm'));
+        // dd($data);
+        $this->redirect(route('farm.information.farm.edit', encrypt($data['farmID'])));
     }
 
-    public function updated()
+    public function confirmDelete()
     {
-        // $this->resetPage();
+        // $farmId = $data['farmID'];
+        dd("Hello");
+        // $this->dialog()->confirm([
+        //     'title'       => 'Are you Sure?',
+        //     'description' => 'Save the information?',
+        //     'acceptLabel' => 'Yes, save it',
+        //     'method'      => 'save',
+        //     'params'      => 'Saved',
+        // ]);
+        // Retrieve the farm record from the database based on $farmId
+        // $farm = Farm::find($farmId);
+        // $this->emit('showDeleteModal', $farmId);
+
+
     }
+    // public function remove($id)
+    // {
+    //     dd($id);
+    // }
+
     public function render()
     {
-        $this->farms = DB::table('farms')->where('active_status', '1')->where('farm_name', 'like', '%' . $this->search . '%')->orderBy($this->sortBy, $this->sortDirection)->get();
         return view('livewire.farm-information.farm-home');
-    }
-    public function sortBy($field)
-    {
-        if ($this->sortBy === $field) {
-            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
-        } else {
-            $this->sortDirection = 'asc';
-            $this->sortBy = $field;
-        }
-        $this->modalDelete = [];
-    }
-    public function confirmModal($variable)
-    {
-        if(isset($this->modalDelete[$variable])) $this->modalDelete[$variable] = !$this->modalDelete[$variable];
-        else $this->modalDelete[$variable] = true;
     }
 }
